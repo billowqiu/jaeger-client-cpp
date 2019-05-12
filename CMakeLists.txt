@@ -11,9 +11,10 @@ set(HUNTER_CONFIGURATION_TYPES "Release;Debug" CACHE STRING
 
 include(CMakeDependentOption)
 include(HunterGate)
+
 HunterGate(
-    URL "https://github.com/ruslo/hunter/archive/v0.23.5.tar.gz"
-    SHA1 "2c5c6fc1cf609d0856695d60f147594daf4e6b3e"
+    URL "https://github.com/ruslo/hunter/archive/v0.23.165.tar.gz"
+    SHA1 "5a73f91df5f6109c0bb1104d0c0ee423f7bece79"
 )
 
 project(jaegertracing VERSION 0.5.0)
@@ -193,7 +194,9 @@ set(SRC
     src/jaegertracing/utils/HexParsing.cpp
     src/jaegertracing/utils/RateLimiter.cpp
     src/jaegertracing/utils/UDPClient.cpp
-    src/jaegertracing/utils/YAML.cpp)
+    src/jaegertracing/utils/YAML.cpp
+    src/jaegertracing/context/internal/context.cc
+    src/jaegertracing/context/internal/with_context.cc)
 
 if(JAEGERTRACING_BUILD_CROSSDOCK)
   list(APPEND SRC
@@ -252,6 +255,9 @@ configure_file(
 if(JAEGERTRACING_BUILD_EXAMPLES)
   add_executable(app examples/App.cpp)
   target_link_libraries(app PUBLIC ${JAEGERTRACING_LIB})
+
+  add_executable(AppWithContext examples/AppWithContext.cpp)
+  target_link_libraries(AppWithContext PUBLIC ${JAEGERTRACING_LIB})
 endif()
 
 if(BUILD_TESTING)
