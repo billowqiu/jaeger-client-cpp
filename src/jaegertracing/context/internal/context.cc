@@ -16,6 +16,7 @@
 
 #include <functional>
 #include <utility>
+#include <sstream>
 
 #include "jaegertracing/context/with_context.h"
 
@@ -40,7 +41,9 @@ std::string Context::DebugString() const {
   // return absl::StrCat("ctx@", absl::Hex(this),
   //                     " span=", span_.context().ToString(),
   //                     ", tags=", tags_.DebugString());
-  return "";
+  std::ostringstream oss;
+  spancontext_.print(oss);
+  return oss.str();
 }
 
 const SpanContext& Context::GetSpanContext() const {

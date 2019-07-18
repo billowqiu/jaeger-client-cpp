@@ -57,15 +57,7 @@ class Context {
   static Context* InternalMutableCurrent();
   friend void swap(Context& a, Context& b);
 
-  // friend class ContextTestPeer;
   friend class WithSpanContext;
-  // friend class ::opencensus::tags::ContextPeer;
-  // friend class ::opencensus::tags::WithTagMap;
-  // friend class ::opencensus::trace::ContextPeer;
-  // friend class ::opencensus::trace::WithSpan;
-
-  // opencensus::tags::TagMap tags_;
-  // opencensus::trace::Span span_;
   SpanContext spancontext_;
 
 };
