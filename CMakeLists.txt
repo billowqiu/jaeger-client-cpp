@@ -206,6 +206,7 @@ if(JAEGERTRACING_BUILD_CROSSDOCK)
 endif()
 
 function(add_lib_deps lib)
+  message(STATUS "add ${lib} LIBS: ${LIBS}")
   target_include_directories(${lib} PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
     $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/src>)

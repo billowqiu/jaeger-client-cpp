@@ -33,7 +33,7 @@ namespace jaegertracing {
 class Context {
  public:
   // Returns a const reference to the current (thread local) Context.
-  static const Context& Current();
+  static Context& Current();
 
   // Context is copiable and movable.
   Context(const Context&) = default;
@@ -49,6 +49,7 @@ class Context {
   std::string DebugString() const;
 
   const SpanContext& GetSpanContext() const;
+  void SetSpanContext(const SpanContext& spancontext);
 
  private:
   // Creates a default Context.

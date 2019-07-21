@@ -27,7 +27,7 @@ Context::Context()
 }
 
 // static
-const Context& Context::Current() { return *InternalMutableCurrent(); }
+Context& Context::Current() { return *InternalMutableCurrent(); }
 
 std::function<void()> Context::Wrap(std::function<void()> fn) const {
   SpanContext copy(Context::InternalMutableCurrent()->spancontext_);
@@ -48,6 +48,10 @@ std::string Context::DebugString() const {
 
 const SpanContext& Context::GetSpanContext() const {
   return spancontext_;
+}
+
+void Context::SetSpanContext(const SpanContext& spancontext) {
+  spancontext_ = spancontext;
 }
 
 // static
