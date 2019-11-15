@@ -12,11 +12,14 @@ set(HUNTER_CONFIGURATION_TYPES "Release;Debug" CACHE STRING
 include(CMakeDependentOption)
 include(HunterGate)
 
+#HunterGate(
+#    URL "https://github.com/ruslo/hunter/archive/v0.23.165.tar.gz"
+#    SHA1 "5a73f91df5f6109c0bb1104d0c0ee423f7bece79"
+#)
 HunterGate(
-    URL "https://github.com/ruslo/hunter/archive/v0.23.165.tar.gz"
-    SHA1 "5a73f91df5f6109c0bb1104d0c0ee423f7bece79"
+    URL "https://github.com/ruslo/hunter/archive/v0.23.214.tar.gz"
+    SHA1 "e14bc153a7f16d6a5eeec845fb0283c8fad8c358"
 )
-
 project(jaegertracing VERSION 0.5.0)
 
 option(JAEGERTRACING_WARNINGS_AS_ERRORS "Treat compiler warnings as errors" OFF)

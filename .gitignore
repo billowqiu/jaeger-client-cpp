@@ -1,5 +1,6 @@
 # Build files
 /build
+/_build
 /crossdock/crossdock
 /crossdock/jaeger-docker-compose.yml
 
