@@ -25,7 +25,7 @@ namespace http {
 
 Method parseMethod(const std::string& methodName)
 {
-    static constexpr auto kMethodNames = { "OPTIONS", "GET",    "HEAD",
+    static auto kMethodNames = { "OPTIONS", "GET",    "HEAD",
                                            "POST",    "PUT",    "DELETE",
                                            "TRACE",   "CONNECT" };
 
