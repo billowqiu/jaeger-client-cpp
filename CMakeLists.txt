@@ -12,13 +12,10 @@ set(HUNTER_CONFIGURATION_TYPES "Release;Debug" CACHE STRING
 include(CMakeDependentOption)
 include(HunterGate)
 
-#HunterGate(
-#    URL "https://github.com/ruslo/hunter/archive/v0.23.165.tar.gz"
-#    SHA1 "5a73f91df5f6109c0bb1104d0c0ee423f7bece79"
-#)
 HunterGate(
-    URL "https://github.com/ruslo/hunter/archive/v0.23.214.tar.gz"
-    SHA1 "e14bc153a7f16d6a5eeec845fb0283c8fad8c358"
+    URL "https://github.com/cpp-pm/hunter/archive/v0.25.5.tar.gz"
+    SHA1 "a20151e4c0740ee7d0f9994476856d813cdead29"
+    FILEPATH ${CMAKE_CURRENT_SOURCE_DIR}/config.cmake
 )
 project(jaegertracing VERSION 0.5.0)
 
@@ -47,8 +44,8 @@ endif()
 set(package_deps)
 
 if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND
-   CMAKE_CXX_COMPILER_VERSION VERSION_LESS "4.9")
-  message(FATAL_ERROR "Must use gcc >= 4.9")
+   CMAKE_CXX_COMPILER_VERSION VERSION_LESS "4.8")
+  message(FATAL_ERROR "Must use gcc >= 4.8")
 endif()
 
 hunter_add_package(thrift)
@@ -85,13 +82,10 @@ if(JAEGERTRACING_WITH_YAML_CPP)
   # Not `${hunter_config}` because yaml-cpp provides its own
   # yaml-cpp-config.cmake file
   find_package(yaml-cpp CONFIG REQUIRED)
-  if(HUNTER_ENABLED)
-      list(APPEND LIBS yaml-cpp::yaml-cpp)
-  else()
-      list(APPEND LIBS yaml-cpp)
-  endif()
   list(APPEND package_deps yaml-cpp)
 endif()
+list(APPEND LIBS yaml-cpp)
+list(APPEND package_deps yaml-cpp)
 
 include(CTest)
 if(BUILD_TESTING)
